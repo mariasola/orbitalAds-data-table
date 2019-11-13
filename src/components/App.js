@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/App.scss";
 import cities from "../services/getChinaCities";
 import CityList from "./CityList";
+import Header from "./Header";
 
 class App extends React.Component {
   constructor(props) {
@@ -14,13 +15,26 @@ class App extends React.Component {
             name: item.name,
             chineseName: item.chineseName
           })
-      )
+      ),
+      filterValue: ""
     };
+    this.handleFilter = this.handleFilter.bind(this);
+  }
+  handleFilter(event) {
+    const newState = {
+      ...this.state,
+      filterValue: event.currentTarget.value
+    };
+    this.setState(newState);
   }
   render() {
+    const filteredCities = this.state.cities.filter(city =>
+      city.name.toLowerCase().includes(this.state.filterValue.toLowerCase())
+    );
     return (
       <div className="App">
-        <CityList cities={this.state.cities} />
+        <Header />
+        <CityList cities={filteredCities} handleFilter={this.handleFilter} />
       </div>
     );
   }

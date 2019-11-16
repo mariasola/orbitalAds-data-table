@@ -26,6 +26,8 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.toggleAll = this.toggleAll.bind(this);
     this.filterCity = this.filterCity.bind(this);
+    this.clearAll = this.clearAll.bind(this);
+    this.areAllSelected = this.areAllSelected.bind(this);
   }
   handleFilter(event) {
     const newState = {
@@ -35,7 +37,6 @@ class App extends React.Component {
     this.setState(newState);
   }
   handleClick(idClicked, newStatus) {
-    debugger;
     this.setState(prevState => {
       const cities = prevState.cities.map(city => {
         if (city.id === idClicked) {
@@ -63,17 +64,17 @@ class App extends React.Component {
       };
     });
   }
-  toggleAll(toggleAll) {
+  toggleAll(ev) {
+    const toggleAllStatus = ev.target.checked;
     this.setState(prevState => {
       const cities = prevState.cities.map(city => {
         if (this.filterCity(city)) {
-          city.isPicked = toggleAll; //para ti toggleAll;
+          city.isPicked = toggleAllStatus;
         }
         return city;
       });
       return {
-        cities: cities,
-        toggleAll: toggleAll
+        cities: cities
       };
     });
   }
@@ -82,25 +83,45 @@ class App extends React.Component {
       .toLowerCase()
       .includes(this.state.filterValue.toLowerCase());
   }
+  areAllSelected(cities) {
+    return cities.reduce((acc, city) => {
+      if (city.isPicked === false) {
+        return false;
+      } else {
+        return acc;
+      }
+    }, true);
+  }
+  // Here in areAllSelected a reduce was chosen because, even if a for is more eficient, as it is a test I wanted to display all the knowledge I have.
   render() {
     const filteredCities = this.state.cities.filter(this.filterCity);
+    const pickedCity = this.state.cities.filter(city => {
+      return city.isPicked;
+    });
     return (
       <div className="App">
         <Header />
-        <Filter handleFilter={this.handleFilter} />
-        <div className="allItems">
-          <label>
-            <input
-              type="checkbox"
-              onClick={this.toggleAll}
-              className="cityItem-checkbox"
-            ></input>
-            {cities.length} items
-          </label>
-        </div>
         <div className="modules">
-          <CityList cities={filteredCities} click={this.handleClick} />
-          <PickedList cities={filteredCities} clearAll={this.clearAll} />
+          <div className="modules-one">
+            <Filter handleFilter={this.handleFilter} />
+            <div className="allItems">
+              <input
+                checked={this.areAllSelected(filteredCities)}
+                type="checkbox"
+                onChange={this.toggleAll}
+                className="cityItem-checkbox"
+              ></input>
+              <p className="allItems-p">{filteredCities.length} items</p>
+            </div>
+            <CityList cities={filteredCities} click={this.handleClick} />
+          </div>
+          <div className="modules-two">
+            <PickedList
+              pickedCity={pickedCity}
+              clearAll={this.clearAll}
+              click={this.handleClick}
+            />
+          </div>
         </div>
       </div>
     );

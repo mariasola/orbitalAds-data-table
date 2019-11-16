@@ -1,0 +1,16 @@
+.rightSection {
+  .clearCount {
+    display: flex;
+    justify-content: space-between;
+    &-btn {
+      cursor: pointer;
+      outline: none;
+      border: none;
+      color: #0d81ce;
+      font-size: 13px;
+    }
+  }
+  .cityPickedList {
+    padding: 0;
+  }
+}

@@ -12,6 +12,7 @@ class CityItem extends React.Component {
     this.props.click(this.props.id);
   }
   unselectCity() {
+    debugger;
     this.props.click(this.props.id, false);
   }
   render() {
@@ -21,8 +22,8 @@ class CityItem extends React.Component {
         <input
           type="checkbox"
           id={id}
-          defaultChecked={isPicked}
-          onClick={this.toggleCity}
+          checked={isPicked}
+          onChange={this.toggleCity}
           className="cityItem-checkbox"
         />
         <img className="cityItem-img" src={cityIcon} alt={name} />

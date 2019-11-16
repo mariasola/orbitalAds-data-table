@@ -1,0 +1,18 @@
+.filter {
+  display: flex;
+  flex-direction: row;
+  padding: 15px 0 20px;
+  border-bottom: 1px solid #e3e3e3;
+  &-icon {
+    width: 15px;
+    height: auto;
+    color: grey;
+  }
+  &-input {
+    padding-left: 8px;
+    border: none;
+    border-bottom: 1px solid #757575;
+    font-size: 15px;
+    outline: none;
+  }
+}

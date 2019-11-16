@@ -1,23 +1,26 @@
 import React from "react";
-import Filter from "./Filter";
+import "../styles/CityList.scss";
+
 import CityItem from "./CityItem";
 
 class CityList extends React.Component {
   render() {
-    const { cities, handleFilter } = this.props;
+    const { cities, click } = this.props;
     return (
-      <React.Fragment>
-        <Filter handleFilter={handleFilter} />
-        <ul>
+      <section className="left-section">
+        <ul className="cityList">
           {cities.map(item => (
             <CityItem
+              key={item.id}
               id={item.id}
               name={item.name}
               chineseName={item.chineseName}
+              isPicked={item.isPicked}
+              click={click}
             />
           ))}
         </ul>
-      </React.Fragment>
+      </section>
     );
   }
 }

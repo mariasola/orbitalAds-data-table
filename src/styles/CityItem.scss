@@ -1,0 +1,60 @@
+.cityItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0 10px;
+  padding: 8px 0 8px;
+  font-size: 16px;
+  line-height: 24px;
+  &:hover {
+    background: rgb(228, 228, 228);
+  }
+  &-checkbox {
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    border: 2px solid #888;
+    width: 20px;
+    height: 20px;
+    margin: 10px 10px 10px 0;
+    &:checked:active {
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+        inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    &:checked {
+      position: relative;
+      background-color: #0d81ce;
+      border: none;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+        inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),
+        inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+    &:checked::before {
+      content: "\2713";
+      font-size: 16px;
+      position: absolute;
+      top: 0px;
+      left: 3px;
+      color: #ffffff;
+    }
+  }
+  &-img {
+    margin-left: 8px;
+    width: 50px;
+    height: 50px;
+  }
+  &-text {
+    margin-left: 15px;
+    &-title {
+      margin: 0;
+    }
+    &-subtitle {
+      margin: 0;
+      font-size: 11px;
+    }
+  }
+  &-x {
+    display: none;
+  }
+}

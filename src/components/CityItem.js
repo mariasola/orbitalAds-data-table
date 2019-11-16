@@ -1,13 +1,38 @@
 import React from "react";
+import "../styles/CityItem.scss";
+import cityIcon from "../images/city-icon.png";
 
 class CityItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggleCity = this.toggleCity.bind(this);
+    this.unselectCity = this.unselectCity.bind(this);
+  }
+  toggleCity() {
+    this.props.click(this.props.id);
+  }
+  unselectCity() {
+    this.props.click(this.props.id, false);
+  }
   render() {
-    const { id, name, chineseName } = this.props;
+    const { id, name, chineseName, isPicked } = this.props;
     return (
-      <li>
-        <small>{id}</small>
-        <h3>{name}</h3>
-        <p>{chineseName}</p>
+      <li className="cityItem">
+        <input
+          type="checkbox"
+          id={id}
+          defaultChecked={isPicked}
+          onClick={this.toggleCity}
+          className="cityItem-checkbox"
+        />
+        <img className="cityItem-img" src={cityIcon} alt={name} />
+        <div className="cityItem-text">
+          <h3 className="cityItem-text-title">{name}</h3>
+          <p className="cityItem-text-subtitle">{chineseName}</p>
+        </div>
+        <span onClick={this.unselectCity} className="cityItem-x">
+          X
+        </span>
       </li>
     );
   }

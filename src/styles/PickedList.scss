@@ -12,5 +12,8 @@
   }
   .cityPickedList {
     padding: 0;
+    .pickedCityItem {
+      list-style: none;
+    }
   }
 }

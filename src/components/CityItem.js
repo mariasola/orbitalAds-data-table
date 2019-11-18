@@ -12,13 +12,12 @@ class CityItem extends React.Component {
     this.props.click(this.props.id);
   }
   unselectCity() {
-    debugger;
     this.props.click(this.props.id, false);
   }
   render() {
     const { id, name, chineseName, isPicked } = this.props;
     return (
-      <li className="cityItem">
+      <div className="cityItem">
         <input
           type="checkbox"
           id={id}
@@ -34,7 +33,7 @@ class CityItem extends React.Component {
         <span onClick={this.unselectCity} className="cityItem-x">
           X
         </span>
-      </li>
+      </div>
     );
   }
 }

@@ -10,14 +10,16 @@ class CityList extends React.Component {
       <section className="left-section">
         <ul className="cityList">
           {cities.map(item => (
-            <CityItem
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              chineseName={item.chineseName}
-              isPicked={item.isPicked}
-              click={click}
-            />
+            <li>
+              <CityItem
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                chineseName={item.chineseName}
+                isPicked={item.isPicked}
+                click={click}
+              />
+            </li>
           ))}
         </ul>
       </section>

@@ -93,6 +93,7 @@ class App extends React.Component {
     }, true);
   }
   // Here in areAllSelected a reduce was chosen because, even if a for is more eficient, as it is a test I wanted to display all the knowledge I have.
+
   render() {
     const filteredCities = this.state.cities.filter(this.filterCity);
     const pickedCity = this.state.cities.filter(city => {
